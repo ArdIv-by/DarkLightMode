@@ -1,5 +1,10 @@
 body {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
   @extend %Lato-BoldItalic-700;
+}
+
+body.dark {
+  --white: #444;
+  --black: #fff;
 }

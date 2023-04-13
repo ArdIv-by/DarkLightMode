@@ -1,17 +1,30 @@
 $(function () {
-  const toggle = document.getElementById('toggleDark');
-  const body = document.querySelector('body');
+  let toggleBtn = document.getElementById('toggle-btn');
+  let body = document.body;
+  let darkMode = localStorage.getItem('dark-mode');
 
-  toggle.addEventListener('click', function () {
-    this.classList.toggle('bi-moon-fill');
-    if (this.classList.toggle('bi-brightness-high-fill')) {
-      body.style.background = 'white';
-      body.style.color = 'black';
-      body.style.transition = '2s';
+  const enableDarkMode = () => {
+    toggleBtn.classList.replace('fa-sun', 'fa-moon');
+    body.classList.add('dark');
+    localStorage.setItem('dark-mode', 'enabled');
+  }
+
+  const disableDarkMode = () => {
+    toggleBtn.classList.replace('fa-moon', 'fa-sun');
+    body.classList.remove('dark');
+    localStorage.setItem('dark-mode', 'disable');
+  }
+
+  if (darkMode === 'enabled') {
+    enableDarkMode();
+  }
+
+  toggleBtn.onclick = (e) => {
+    darkMode = localStorage.getItem('dark-mode');
+    if (darkMode === 'disable') {
+      enableDarkMode();
     } else {
-      body.style.background = 'black';
-      body.style.color = 'white';
-      body.style.transition = '2s';
+      disableDarkMode();
     }
-  })
+  }
 });
